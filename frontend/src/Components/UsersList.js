@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 const UsersList = () => {
 
     const [currentpage,setCurrentpage] = useState(1)
-    const [rows,setRows] = useState(2)
+    const [rows,setRows] = useState(20)
 
     const datalength = UserData.length;
 
@@ -24,8 +24,8 @@ const UsersList = () => {
     const paginated_data = UserData.filter((user,index)=> index >= startIndex && index < endIndex)
     
     return(
-        <div className="container">
-        <table className="table border-blue-200 flex justify-center">
+        <>
+        <table className="table border-blue-200 w-full">
             <thead>
             <tr className="border ">
                 <th className="text-left border border-gray-400 bg-gray-200">Id</th>
@@ -43,13 +43,13 @@ const UsersList = () => {
                 ))}
             </tbody>
         </table>
-        <div className="flex justify-center">
+        <div className="mt-8 mb-4">
         <Pagination
          datalength={datalength} currentpage={currentpage} rows={rows} UserData={UserData}
           handlenextclick={handlenextclicK} handlpreviousclicK={handlpreviousclicK}/>
           </div>
-        </div>
         
+          </>
     )
 }
 

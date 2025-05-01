@@ -6,9 +6,9 @@ import UsersList from "../Components/UsersList";
 const AdminPage = () =>{
      return(
         <>
-          <main className="mainAdmin">
+          <main className="mainAdmin h-screen">
             <Menu/>
-            <div className="content">
+            <div className="content w-full">
             <Routes>
               <Route path="users" element={<UsersList/>}></Route>
             </Routes>

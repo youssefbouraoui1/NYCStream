@@ -12,11 +12,11 @@ const Menu = ()=>{
   }
 
     return (
-      <div className={visible?"adminmenuvisible bg-gray-200 pt-8":"adminmenuhidden bg-gray-200 pt-8"}>
-        <button className="ml-4" onClick={toggleMenu}><MenuIcon/>{visible?"Menu":""}</button>
+      <div className={`h-full ${visible?"adminmenuvisible bg-gray-200 pr-2":"adminmenuhidden bg-gray-200 pr-2"}`} >
+        <button className="ml-4 pb-4" onClick={toggleMenu}><MenuIcon/>{visible?"Menu":""}</button>
         <ul className={visible?"":"hidden"}>
           {MenuData.map(data=>(
-            <li key={data.id} className="ml-4 mb-4">
+            <li key={data.id} className="pl-2 pr-2 ml-4 mb-4 hover:bg-gray-300 rounded">
               <Link to={data.path}>
                 <span>{data.title}</span>
               </Link>
