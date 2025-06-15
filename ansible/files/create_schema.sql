@@ -12,15 +12,15 @@ CREATE TABLE IF NOT EXISTS traffic_incidents (
 );
 
 CREATE TABLE IF NOT EXISTS dim_date (
-    date_id DATE PRIMARY KEY,
-    crash_instant TIMESTAMP,
+    date_id TIMESTAMP PRIMARY KEY,
+    crash_date DATE,
     day_of_week TEXT,
     month TEXT,
     year INT
 );
 
 CREATE TABLE IF NOT EXISTS dim_location (
-    location_id SERIAL PRIMARY KEY,
+    location_id UUID PRIMARY KEY, 
     borough TEXT,
     zip_code TEXT,
     on_street_name TEXT,
@@ -29,23 +29,23 @@ CREATE TABLE IF NOT EXISTS dim_location (
 );
 
 CREATE TABLE IF NOT EXISTS dim_vehicle (
-    vehicle_id SERIAL PRIMARY KEY,
+    vehicle_id UUID PRIMARY KEY,
     vehicle_type TEXT,
-    vehicle_position INT  -- 1 to 5
+    vehicle_position INT 
 );
 
 CREATE TABLE IF NOT EXISTS dim_contributing_factor (
-    factor_id SERIAL PRIMARY KEY,
+    factor_id UUID PRIMARY KEY,  
     factor_description TEXT,
-    factor_position INT  -- 1 to 5
+    factor_position INT  
 );
 
 CREATE TABLE IF NOT EXISTS fact_incidents (
     incident_id UUID PRIMARY KEY,
     date_id DATE REFERENCES dim_date(date_id),
-    location_id INT REFERENCES dim_location(location_id),
-    vehicle_id INT REFERENCES dim_vehicle(vehicle_id),  
-    contributing_factor_id INT REFERENCES dim_contributing_factor(factor_id),  
+    location_id UUID REFERENCES dim_location(location_id),
+    vehicle_id UUID REFERENCES dim_vehicle(vehicle_id),  
+    contributing_factor_id UUID REFERENCES dim_contributing_factor(factor_id),  
     number_of_persons_injured INT,
     number_of_persons_killed INT,
     number_of_motorist_injured INT,

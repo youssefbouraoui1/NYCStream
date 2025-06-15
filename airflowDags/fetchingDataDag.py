@@ -18,7 +18,7 @@ dag = DAG(
 )
 
 NYC_API = "https://data.cityofnewyork.us/resource/h9gi-nx95.json?$limit=100"
-EXPRESS_API = "http://express:3000/api/v1/incidents" # is hould replace it with the container name
+EXPRESS_API = "http://express:3000/api/v1/incidents" 
 
 def fetch_and_send():
     response = requests.get(NYC_API)
@@ -31,6 +31,8 @@ def fetch_and_send():
     for incident in data:
         mapped = {
             "timestamp": f"{incident.get('crash_date', '')}T{incident.get('crash_time', '00:00')}:00Z",
+            "crash_date":incident.get('crash_date',''),
+            "crash_time":incident.get('crash_time', '00:00'),
             "borough": incident.get("borough", "UNKNOWN"),
             "latitude": float(incident["latitude"]) if "latitude" in incident else None,
             "longitude": float(incident["longitude"]) if "longitude" in incident else None,

@@ -61,16 +61,19 @@ export function validateIncident(data) {
       ? `${data.crash_date}T${data.crash_time}:00Z` : null,
     crash_date:data.crash_date,
     crash_time: data.crash_time,
+    location_id : uuidv4(),
     borough: data.borough || 'UNKNOWN',
     zip_code: data.zip_code || null,
     on_street_name: data.on_street_name || 'UNKNOWN',
     off_street_name: data.off_street_name || 'UNKNOWN',
     cross_street_name: data.cross_street_name || 'UNKNOWN',
+    vehicle_type_id:uuidv4(),
     vehicle_types: [
       data.vehicle_type_code1, data.vehicle_type_code2,
       data.vehicle_type_code_3, data.vehicle_type_code_4,
       data.vehicle_type_code_5
     ].filter(v => v),
+    cont_factors_id:uuidv4(),
     contributing_factors: [
       data.contributing_factor_vehicle_1, data.contributing_factor_vehicle_2,
       data.contributing_factor_vehicle_3, data.contributing_factor_vehicle_4,
